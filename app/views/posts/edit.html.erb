@@ -3,10 +3,17 @@
 <%= link_to '最新のツイート', root_path, class: 'nav-link' %>
 </div>
 
+<% if @post.errors.present? %>
+    <ul id='errors.present?'>
+        <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
 
 <%= form_for(@post) do |f| %>
     <div class='form-group'>
         <%= f.text_area :content, class: 'form-controll' %>
     </div>
-    <%= f.submit 'Go!', class: 'btn btn-primary' %>
+    <%= f.submit 'Edit!', class: 'btn btn-primary' %>
 <% end %>
