@@ -1,7 +1,0 @@
-ja:
-  activerecord:
-    models: 
-      post: 投稿
-    attibute:
-      post:
-        content: ツイート
