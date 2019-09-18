@@ -1,2 +1,12 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Let's Tweet!</h1>
+<div class='nav justify-content-end'>
+<%= link_to '最新のツイート', root_path, class: 'nav-link' %>
+</div>
+
+
+<%= form_for(@post) do |f| %>
+    <div class='form-group'>
+        <%= f.text_area :content, class: 'form-controll' %>
+    </div>
+    <%= f.submit 'Go!', class: 'btn btn-primary' %>
+<% end %>
