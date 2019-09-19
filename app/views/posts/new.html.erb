@@ -1,19 +1,22 @@
-<h1>Let's Tweet!</h1>
-<div class='nav justify-content-end'>
-<%= link_to '最新のツイート', root_path, class: 'nav-link' %>
-</div>
+<header id="header">
+    <nav class="navbar fixed-top navbar-dark bg-primary justify-content-end">
+    <a class="navbar-brand" href="/posts">最新のツイート</a>
+    </nav>
+</header>
 
-<% if @post.errors.present? %>
-    <ul id='errors.present?'>
-        <% @post.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
+<main id="posts-new">
+    <% if @post.errors.present? %>
+        <ul id='errors.present?'>
+            <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <% end %>
 
-<%= form_for(@post) do |f| %>
-    <div class='form-group'>
-        <%= f.text_area :content, class: 'form-controll' %>
-    </div>
-    <%= f.submit 'Go!', class: 'btn btn-primary' %>
-<% end %>
+    <%= form_for(@post) do |f| %>
+        <div class='form-group'>
+            <%= f.text_area :content, class: 'form-controll' %>
+        </div>
+        <%= f.submit 'Go!', class: 'btn btn-primary' %>
+    <% end %>
+</main>
