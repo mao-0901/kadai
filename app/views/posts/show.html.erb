@@ -1,11 +1,18 @@
-<h1>Posts#show</h1>
-<div class='nav justify-content-end'>
-<%= link_to '最新のツイート', root_path, class: 'nav-link' %>
+<header id="header">
+    <nav class="navbar fixed-top navbar-dark bg-primary justify-content-end">
+    <a class="navbar-brand" href="/posts">最新のツイート</a>
+    </nav>
+</header>
+
+<main id="posts-show">
+<div class="card">
+    <div class="card-body">
+        <p class="card-text">
+            <%= @post.content %>
+        </p>
+    </div>
 </div>
 
-<div class='form-group'>
-    <%= @post.content %>
-</div>
-
-<%= link_to '編集', edit_post_path, class: 'btn btn-primary mr-3' %>
-<%= link_to '削除', post_path, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger' %>
+    <%= link_to '編集', edit_post_path, class: 'btn btn-primary mr-3' %>
+    <%= link_to '削除', post_path, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger' %>
+</main>
