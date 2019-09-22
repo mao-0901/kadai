@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  #skip_before_action :require_login, only: [:index]
+  #skip_before_action :require_login, only: [:index, :new, :create]
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(25)
@@ -14,7 +14,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(
+      content: params[:post][:content],
+      user: current_user
+    )
     if @post.save
       redirect_to root_path, notice: 'ツイートを送信しました。'
     else

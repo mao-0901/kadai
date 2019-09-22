@@ -1,0 +1,20 @@
+<% if current_user %>
+ 　 　  <%= link_to 'Signout',  logout_path, class: 'navbar-item', method: :delete %>
+<% else %>
+ 　 　  <%= link_to 'Signup', new_user_path, class: 'navbar-item' %>
+ 　 　  <%= link_to 'Signin', root_path, class: 'navbar-item' %>
+<% end %>
+
+<main id="users-index">
+    <a class="btn btn-primary " href="/posts/new" role="button">new!</a>
+	<% @posts.each do |post| %>
+        <div class="card">
+              <div class="card-header">
+                <%=link_to '詳細へ', post_path(post) %>
+              </div>
+            <div class="card-body">
+                <div><%= post.content %></div>
+            </div>
+        </div>
+	<% end %>
+    <%= paginate @posts, outer_window: 3 %>
