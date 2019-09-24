@@ -1,6 +1,7 @@
 <main id="user-posts-index">
     <a class="btn btn-primary " href="/posts/new" role="button">new!</a>
-  
+
+    <%= @posts %>
 	<% @posts.each do |post| %>
         <div class="card">
               <div class="card-header">
