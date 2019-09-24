@@ -6,15 +6,16 @@
 <% end %>
 
 <main id="users-index">
-    <a class="btn btn-primary " href="/posts/new" role="button">new!</a>
-	<% @posts.each do |post| %>
-        <div class="card">
-              <div class="card-header">
-                <%=link_to '詳細へ', post_path(post) %>
-              </div>
-            <div class="card-body">
-                <div><%= post.content %></div>
-            </div>
-        </div>
+  <a class="btn btn-primary" href="/posts/new" role="button">new!</a>
+  <% @posts.each do |post| %>
+    <div class="card">
+      <div class="card-header">
+        <%=link_to '詳細へ', post_path(post) %>
+      </div>
+      <div class="card-body">
+        <div><%= post.content %></div>
+      </div>
+    </div>
 	<% end %>
-    <%= paginate @posts, outer_window: 3 %>
+  <%= paginate @posts, outer_window: 3 %>
+</main>

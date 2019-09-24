@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  #skip_before_action :require_login, only: [:index, :new, :create]
+  skip_before_action :require_login, only: [:index]
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(25)
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def create
+  def create 
     @post = Post.new(
       content: params[:post][:content],
       user: current_user
@@ -31,17 +31,27 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
+
+    if @post.user_id == current_user.id
+      @post.update(post_params)
       redirect_to root_path, notice: 'ツイートを編集しました。'
-    else 
-      render(:edit)
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
     end
+    
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to root_path, notice: 'ツイートを削除しました。'
+    @post = Post.find(params[:id])
+    
+    if @post.user_id == current_user.id
+      @post.destroy
+      redirect_to root_path, notice: 'ツイートを削除しました。'
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    end
   end
 
 
@@ -50,4 +60,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content)
   end
+
 end

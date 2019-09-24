@@ -1,16 +1,41 @@
-<h1>ログイン</h1>
-<%= form_for(@user, url: login_path, html: { medhod: :post }) do |f| %>
-    <div>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-    </div>
+<main id="sessions-new">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="box">
+                    <h1 class="title has-text-centered is-size-4">ログイン</h1>
+                    <hr>
+                    <% @user = User.new unless @user %>
+                    <%= form_for(@user, url: login_path, html: { medhod: :post }) do |f| %>
+                        <% if @user.errors.any? %>
+                            <div class="notification is-danger">
+                                <ul>
+                                    <% @user.errors.full_messages.each do |message| %>
+                                        <li><%= message %></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        <% end %>
 
-    <div>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-    </div>
+                        <div class="field">
+                            <label class="label">メールアドレス</label>
+                                <%= f.email_field :email, class: "input", placeholder: 'Email', autocomplete: :off %>
+                        </div>
 
-    <div>
-        <%= f.submit "ログイン" %>
+                        <div class="field">
+                            <label class="label">パスワード</label>
+                                <%= f.password_field :password, class: "input", placeholder: 'Password', autocomplete: :off %>
+                        </div>
+
+                        <hr>
+
+                        <div class="field is-grouped is-grouped-centered">
+                            <input type="submit" class="btn btn-primary btn-sm" value="送信">
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
-<% end %>
+    <a class='text-info' href="/users/new" >新規登録はこちら</a>
+</main>
