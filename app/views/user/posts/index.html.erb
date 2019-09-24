@@ -1,11 +1,16 @@
-<main id="user-posts-index">
-    <a class="btn btn-primary " href="/posts/new" role="button">new!</a>
+<header id="header">
+    <nav class="navbar fixed-top navbar-dark bg-primary justify-content-end">
+    <a class="navbar-brand" href="/posts">最新のツイート</a>
+    </nav>
+</header>
 
-    <%= @posts %>
+<main id="user-posts-index">
+    <a class="btn btn-secondary " href="/posts/new" role="button">new!</a>
+
 	<% @posts.each do |post| %>
         <div class="card">
               <div class="card-header">
-                <%=link_to '詳細へ', post_path(post) %>
+                <%=link_to '編集', post_path(post) %>
               </div>
             <div class="card-body">
                 <div><%= post.content %></div>

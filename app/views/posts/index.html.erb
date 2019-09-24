@@ -1,9 +1,3 @@
-<%#<header id="header">
-    <nav class="navbar fixed-top navbar-dark bg-primary justify-content-end">
-    <a class="navbar-brand" href="/posts/new">+</a>
-    </nav>
-</header%>
-
 <% if current_user %>
  　 　  <%= link_to 'Signout',  logout_path, class: 'navbar-item', method: :delete %>
 <% else %>
@@ -12,13 +6,12 @@
 <% end %>
 
 <main id="posts-index">
-    <a class="btn btn-primary " href="/posts/new" role="button">new!</a>
+    <a class="btn btn-secondary " href="/posts/new" role="button">new!</a>
 	<% @posts.each do |post| %>
         <div class="card">
               <div class="card-header">
-                <%=link_to '詳細へ', post_path(id: post.id) %>
-                <%#= post.user_id %>
-                <%= link_to '個人のつぶやき', user_posts_path(user_id: post.user_id) %>
+                <%=link_to '編集', post_path(id: post.id) %>
+                <%= link_to "#{post.user.username}のページへ", user_posts_path(user_id: post.user_id), class:"user-link" %>
               </div>
             <div class="card-body">
                 <div><%= post.content %></div>
@@ -26,22 +19,4 @@
         </div>
 	<% end %>
     <%= paginate @posts, outer_window: 3 %>
-
-    <%#
-    <nav aria-label="...">
-    <ul class="pagination">
-        <li class="page-item disabled">
-        <a class="page-link" href="#!" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#!">1</a></li>
-        <li class="page-item active">
-        <a class="page-link" href="#!">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-        <li class="page-item">
-        <a class="page-link" href="#!">Next</a>
-        </li>
-    </ul>
-    </nav>
-    %>
 </main>

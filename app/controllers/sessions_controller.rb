@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  #skip_before_action :require_login, except: [:destroy]
-  #before_action :require_login, only: [:create, :new, :destroy]
+  skip_before_action :require_login, only: [:create, :new, :destroy]
 
   def new
     @user = User.new
@@ -8,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = login(login_params[:email], login_params[:password])
-      if @user
+      if @user 
         redirect_back_or_to(root_path, notice: 'ログインに成功しました')
       else
         flash.now[:alert] = 'ログインに失敗しました'
