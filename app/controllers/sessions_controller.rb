@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(login_params[:email], login_params[:password])
+    @user = login(params[:email], params[:password])
       if @user 
         redirect_back_or_to(root_path, notice: 'ログインに成功しました')
       else
-        flash.now[:alert] = 'ログインに失敗しました'
+        flash[:notice] = 'ログインに失敗しました'
         render :new
       end
   end
